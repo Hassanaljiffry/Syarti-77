@@ -1,0 +1,20 @@
+
+workflows:
+  build-flutter-app:
+    name: Build Flutter APK
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Create Flutter project structure
+        script: |
+          flutter create --org com.hassanaljiffrey .
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
